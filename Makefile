@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: fepennar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/03/12 19:57:37 by fepennar          #+#    #+#              #
-#    Updated: 2025/03/12 19:57:39 by fepennar         ###   ########.fr        #
+#    Created: 2025/03/13 18:16:36 by fepennar          #+#    #+#              #
+#    Updated: 2025/03/13 18:17:10 by fepennar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,9 +34,9 @@ OBJS		=	$(addprefix $(OBJS_DIR), $(SRC:.c=.o))
 
 NAME		=	so_long
 
-CC			=	gcc
+CC			=	cc
 
-CFLAGS		=	-Wall -Wextra -Werror -g
+CFLAGS		=	-Wall -Wextra -Werror -gdwarf-4
 
 RM			=	rm -f
 
@@ -73,11 +73,5 @@ re:				fclean all
 
 norm:
 				@norminette $(SRCS) $(SRCS_DIR)so_long.h
-
-#test:			all
-#				@./$(NAME) ./maps/test1.ber
-
-#bonus:			all
-#				@./$(NAME) ./maps/enemy_map.ber
 
 .PHONY:			all clean fclean re norm test bonus

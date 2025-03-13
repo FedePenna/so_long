@@ -16,7 +16,7 @@ int	move_hook(int keycode, t_data *game)
 {
 	if (keycode == W || keycode == A || keycode == S || keycode == D)
 		move_check(keycode, game);
-	if (keycode == ESC)
+	else if (keycode == ESC)
 		power_off(game);
 	return (0);
 }

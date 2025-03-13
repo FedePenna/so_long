@@ -25,21 +25,21 @@ void	print_coin(t_data *game, int i, int index)
 		game->textures.coins, i * 64, (index * 64));
 }
 
-void	print_viktor(t_data *game, int i, int index)
+void	print_player(t_data *game, int i, int index)
 {
 	print_ground(game, i, index);
 	if (game->player_pos.directions == FRONT)
 		mlx_put_image_to_window(game->mlx, game->win, \
-			game->textures.viktor, i * 64, (index * 64));
+			game->textures.player, i * 64, (index * 64));
 	else if (game->player_pos.directions == BACK)
 		mlx_put_image_to_window(game->mlx, game->win, \
-			game->textures.viktor_down, i * 64, (index * 64));
+			game->textures.player_down, i * 64, (index * 64));
 	else if (game->player_pos.directions == LEFT)
 		mlx_put_image_to_window(game->mlx, game->win, \
-			game->textures.viktor_left, i * 64, (index * 64));
+			game->textures.player_left, i * 64, (index * 64));
 	else if (game->player_pos.directions == RIGHT)
 		mlx_put_image_to_window(game->mlx, game->win, \
-			game->textures.viktor_right, i * 64, (index * 64));
+			game->textures.player_right, i * 64, (index * 64));
 }
 
 void	print_exit(t_data *game, int i, int index)

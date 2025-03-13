@@ -17,10 +17,10 @@ void	print_elements(t_data *game, char *line, int index)
 	int	i;
 
 	i = -1;
-	while (line[i++])
+	while (line[++i])
 	{
 		if (line[i] == 'P')
-			print_viktor(game, i, index);
+			print_player(game, i, index);
 		else if (line[i] == 'C')
 			print_coin(game, i, index);
 		else if (line[i] == 'E')
@@ -40,19 +40,22 @@ void	item_to_window(t_data *game)
 	char	*moves;
 	char	*points;
 
-	i = -1;
+	i = 0;
 	moves = ft_itoa(game->moves);
 	points = ft_itoa(game->score);
-	while (game->map[i++] != NULL)
+	while (game->map[i] != NULL)
+	{	
 		print_elements(game, game->map[i], i);
-	mlx_string_put(game->mlx, game->win, (game->cols * 64) - 5, \
-		(game->rows * 64) - 5, 0x000000, "Moves :");
-	mlx_string_put(game->mlx, game->win, (game->cols * 64) - 5, \
-	(game->rows * 64) - 5, 0x000000, moves);
-	mlx_string_put(game->mlx, game->win, (game->cols * 64) - 5, \
-	(game->rows * 64) - 5, 0x000000, "Score :");
-	mlx_string_put(game->mlx, game->win, (game->cols * 64) - 5, \
-	(game->rows * 64) - 5, 0x000000, points);
+		i++;
+	}
+	mlx_string_put(game->mlx, game->win, 64 + 30, \
+		(game->rows * 64) - 10, 0x000000, "Moves :");
+	mlx_string_put(game->mlx, game->win, 64 + 80, \
+	(game->rows * 64) - 10, 0x000000, moves);
+	mlx_string_put(game->mlx, game->win, 64 + 120, \
+	(game->rows * 64) - 10, 0x000000, "Score :");
+	mlx_string_put(game->mlx, game->win, 64 + 170, \
+	(game->rows * 64) - 10, 0x000000, points);
 	free(moves);
 	free(points);
 }

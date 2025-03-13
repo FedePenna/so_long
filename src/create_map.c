@@ -50,6 +50,7 @@ void	create_map(t_data *game, char *mappath)
 	while (i < game->rows)
 	{
 		game->map[i] = get_next_line(fd);
+		
 		if (!(game->map[i]))
 			break ;
 		i++;

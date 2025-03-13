@@ -17,12 +17,12 @@ void	init_textures(t_data *game)
 	game->textures.ground = NULL;
 	game->textures.coins = NULL;
 	game->textures.wall = NULL;
-	game->textures.viktor = NULL;
-	game->textures.viktor_left = NULL;
-	game->textures.viktor_right = NULL;
-	game->textures.viktor_down = NULL;
+	game->textures.player = NULL;
+	game->textures.player_left = NULL;
+	game->textures.player_right = NULL;
+	game->textures.player_down = NULL;
 	game->textures.exit = NULL;
-	game->textures.blitzcrank = NULL;
+	game->textures.enemy = NULL;
 }
 
 void	init_game(t_data *game)
@@ -41,6 +41,7 @@ void	init_game(t_data *game)
 	game->player_pos.col = 0;
 	game->enemy_pos.row = 0;
 	game->enemy_pos.col = 0;
+	game->enemy_pos.e_dir = BACK;
 	game->player_pos.directions = FRONT;
 	game->player = 0;
 	game->enemy = 0;

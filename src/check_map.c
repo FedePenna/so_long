@@ -63,9 +63,9 @@ void	is_rectangular(t_data *game)
 		i++;
 	}
 	if (game->cols == game->rows)
-		ft_error_message("El quadrador");
+		ft_error_message("No Squares");
 	if (game->cols < 3 || game->rows < 3)
-		ft_error_message("That ain't no map bro");
+		ft_error_message("No...Nothing Literally");
 }
 
 void	update_elements(t_data *game)
@@ -77,7 +77,7 @@ void	update_elements(t_data *game)
 	while (i < game->rows)
 	{
 		j = -1;
-		while (j++ < game->cols)
+		while (++j < game->cols)
 		{
 			if (game->map[i][j] == 'P')
 			{
@@ -105,6 +105,6 @@ void	check_map(t_data *game)
 	update_elements(game);
 	find_enemy(game);
 	if (game->exit != 1 || game->coins < 1
-		|| game->player != 1 || game->enemy != 1)
+		|| game->player != 1 || game->enemy > 1)
 		ft_error_message("Invalid map.");
 }

@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #ifndef BUFFER_SIZE
-# define BUFFER_SIZE 9
+# define BUFFER_SIZE 11
 #endif
 
 #include "libft.h"

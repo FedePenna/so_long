@@ -25,7 +25,7 @@ enum e_thewasd
 	A = 97,
 	S = 115,
 	D = 100,
-	ESC = 65293
+	ESC = 65307
 };
 
 enum e_directions
@@ -41,22 +41,22 @@ typedef struct s_txtrs
 	void	*ground;
 	void	*coins;
 	void	*wall;
-	void	*viktor;
-	void	*viktor_left;
-	void	*viktor_right;
-	void	*viktor_down;
+	void	*player;
+	void	*player_left;
+	void	*player_right;
+	void	*player_down;
 	void	*exit;
-	void	*blitzcrank;
+	void	*enemy;
 }	t_textures;
 
-typedef struct s_viktor
+typedef struct s_player
 {
 	int						row;
 	int						col;
 	enum e_directions		directions;
 }	t_player;
 
-typedef struct s_blitzcrank
+typedef struct s_enemy
 {
 	int						row;
 	int						col;
@@ -100,7 +100,7 @@ void		convert_image(t_data *game);
 void		item_to_window(t_data *game);
 void		move_check(int keycode, t_data *game);
 void		print_ground(t_data *game, int i, int index);
-void		print_viktor(t_data *game, int i, int index);
+void		print_player(t_data *game, int i, int index);
 void		print_coin(t_data *game, int i, int index);
 void		print_exit(t_data *game, int i, int index);
 void		print_enemy(t_data *game, int i, int index);

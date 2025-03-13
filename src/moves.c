@@ -11,7 +11,19 @@
 /* ************************************************************************** */
 
 #include "so_long.h"
-
+/*
+static void move_enemy(t_data *game, int row, int col)
+{
+	if (game->map[row][col] == 'H')
+		game->enemy_pos.edir = RIGHT;
+	else if (game->map[row][col] == 'V')
+		game->enemy_pos.edir = BACK;
+	if (game->enemy_pos.edir == BACK)
+		move_enemy_y(game, row, col);
+	else if (game->enemy_pos.edir == RIGHT)
+		move_enemy_x(game, row, col);
+}
+*/
 static void	move_events(t_data *game)
 {
 	if (game->map[game->player_pos.row][game->player_pos.col] == 'C')
@@ -19,30 +31,28 @@ static void	move_events(t_data *game)
 		game->score++;
 		game->coins--;
 		ft_printf("Score : %i\n", game->score);
-		if (game->coins == '1')
-			ft_printf("\nAren't ya feeling a little high crippled man?");
+		if (game->coins == 1)
+			ft_printf("\nCoin Message\n");
 	}
 	if (game->map[game->player_pos.row][game->player_pos.col] == 'H' \
 		|| game->map[game->player_pos.row][game->player_pos.col] == 'V')
 	{
-		ft_printf("\nYou should really stop smoking that shit dude");
+		ft_printf("\nDeath Message\n");
 		power_off(game);
 	}
 	if (game->map[game->player_pos.row][game->player_pos.col] == 'E' \
-		&& game->coins == '0')
+		&& game->coins == 0)
 	{
-		ft_printf("\nKABLOW!!\n How was the anaphylactic shock like? \
-			Welcome To Weedheaven");
+		ft_printf("\nVictory Message\n");
 		power_off(game);
 	}
 }
 
 static void	move_player(t_data *game, int row, int col)
 {
-	if (game->map[row][col] == 'E' && game->coins != '0')
+	if (game->map[row][col] == 'E' && game->coins != 0)
 	{
-		ft_printf("\nYou aren't high enough to cross the hexweed gate");
-		ft_printf("\nYou still have %i Hexblunts to smoke", game->coins);
+		ft_printf("\nCannotenter Message\n");
 		return ;
 	}
 	game->map[game->player_pos.row][game->player_pos.col] = '0';
@@ -51,7 +61,7 @@ static void	move_player(t_data *game, int row, int col)
 	move_events(game);
 	game->map[game->player_pos.row][game->player_pos.col] = 'P';
 	game->moves++;
-	// move_enemy(game, game->enemy_pos.row, game->enemy_pos.col);
+	//move_enemy(game, game->enemy_pos.row, game->enemy_pos.col);
 	ft_printf("Moves : %i\n", game->moves);
 }
 

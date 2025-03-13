@@ -40,5 +40,11 @@ void	print_enemy(t_data *game, int i, int index)
 {
 	print_ground(game, i, index);
 	mlx_put_image_to_window(game->mlx, game->win, \
-		game->textures.blitzcrank, i * 64, (index * 64));
+		game->textures.enemy, i * 64, (index * 64));
 }
+/*
+static void move_enemy_x(t_data *game, int rows, int cols)
+{
+		
+}
+*/
