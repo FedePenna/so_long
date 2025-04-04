@@ -30,7 +30,6 @@ typedef struct s_list
 	struct s_list	*next;
 }			t_list;
 
-int		ft_strlen(const char *str);
 int		ft_printf(const char *text, ...);
 int		ft_lens(char *str);
 int		ft_point_null(void *ptr, int *count);
@@ -81,6 +80,7 @@ void	ft_checkf(char c, va_list args, int *count);
 void	ft_pointer_c(uintptr_t nb, int *count);
 void	ft_putstr_c(va_list args, int *count);
 void	ft_putuint_c(unsigned int nb, int *count);
+size_t	ft_strlen(const char *str);
 size_t	ft_strlcpy(char *dest, const char *src, size_t size);
 size_t	ft_strlcat(char *dest, const char *src, size_t size);
 t_list	*ft_lstnew(void *content);

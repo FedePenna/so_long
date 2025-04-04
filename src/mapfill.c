@@ -11,6 +11,34 @@
 /* ************************************************************************** */
 
 #include "so_long.h"
+/* SIDE NOTE
+   The Following Function compiles only with the TIMER flag in the makefile,
+   if you want to have the countdown just do "make timer"*/
+int	countdown(t_data *game, char *moves, char *points)
+{
+	static int	countdown;
+	static int	sign;
+
+	if (sign != 1)
+	{
+		countdown = 20;
+		sign = 1;
+	}
+	if (game->frames == 200)
+	{
+		countdown--;
+		ft_printf("\nMessage of your choice, you have %i seconds left\n", \
+			countdown);
+	}
+	if (countdown == 0)
+	{
+		ft_printf("\nMessage of your choice");
+		free(moves);
+		free(points);
+		power_off(game);
+	}
+	return (1);
+}
 
 void	print_elements(t_data *game, char *line, int index)
 {
@@ -44,18 +72,20 @@ void	item_to_window(t_data *game)
 	moves = ft_itoa(game->moves);
 	points = ft_itoa(game->score);
 	while (game->map[i] != NULL)
-	{	
+	{
 		print_elements(game, game->map[i], i);
 		i++;
 	}
 	mlx_string_put(game->mlx, game->win, 64 + 30, \
-		(game->rows * 64) - 10, 0x000000, "Moves :");
+		(game->rows * 64) - 10, 0xFFFFFF, "Moves :");
 	mlx_string_put(game->mlx, game->win, 64 + 80, \
-	(game->rows * 64) - 10, 0x000000, moves);
+	(game->rows * 64) - 10, 0xFFFFFF, moves);
 	mlx_string_put(game->mlx, game->win, 64 + 120, \
-	(game->rows * 64) - 10, 0x000000, "Score :");
+	(game->rows * 64) - 10, 0xFFFFFF, "Score :");
 	mlx_string_put(game->mlx, game->win, 64 + 170, \
-	(game->rows * 64) - 10, 0x000000, points);
+	(game->rows * 64) - 10, 0xFFFFFF, points);
+	if (TIMER == 1)
+		countdown(game, moves, points);
 	free(moves);
 	free(points);
 }

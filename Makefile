@@ -24,7 +24,9 @@ SRC			=	init.c \
 	mapfill.c \
 	power_off.c \
 	floodfill.c \
-	print_elements.c
+	print_elements.c \
+	animation.c \
+	enemoves.c
 
 SRCS		=	$(addprefix $(SRCS_DIR), $(SRC))
 
@@ -37,6 +39,8 @@ NAME		=	so_long
 CC			=	cc
 
 CFLAGS		=	-Wall -Wextra -Werror -gdwarf-4
+
+TIMER_FLAG =
 
 RM			=	rm -f
 
@@ -52,7 +56,7 @@ $(OBJS_DIR):
 				mkdir -p $(OBJS_DIR)
 
 $(OBJS_DIR)%.o:	$(SRCS_DIR)%.c | $(OBJS_DIR)
-				$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDES)
+				$(CC) $(CFLAGS) $(TIMER_FLAG) -c $< -o $@ $(INCLUDES)
 
 $(NAME):		$(OBJS_DIR) $(OBJS)
 				@make -C ./mlx_linux
@@ -71,7 +75,27 @@ fclean:			clean
 
 re:				fclean all
 
+timer:			fclean
+				@$(MAKE) TIMER_FLAG="-DTIMER=1"
+
+all:			$(NAME) asciiart
+
 norm:
 				@norminette $(SRCS) $(SRCS_DIR)so_long.h
 
-.PHONY:			all clean fclean re norm test bonus
+asciiart: 
+			@echo -e ' '
+			@echo -e ' .▄▄▄  ▄• ▄▌▄▄▄ ..▄▄ ·▄▄▄▄▄    ·▄▄▄      ▄▄▄   ▄▄▄▄▄▄▄ ▄ .▄▄▄▄ .'
+			@echo -e '▐▀•▀█ █▪██▌▀▄.▀·▐█ ▀.•██      ▐▄▄·▪     ▀▄ █·    •██  ██▪▐█▀▄.▀·'
+			@echo -e '█▌·.█▌█▌▐█▌▐▀▀▪▄▄▀▀▀█▄▐█.▪    ██▪  ▄█▀▄ ▐▀▀▄      ▐█.▪██▀▐█▐▀▀▪▄'
+			@echo -e '▐█▪▄█·▐█▄█▌▐█▄▄▌▐█▄▪▐█▐█▌·    ██▌.▐█▌.▐▌▐█•█▌     ▐█▌·██▌▐▀▐█▄▄▌'
+			@echo -e '·▀▀█.  ▀▀▀  ▀▀▀  ▀▀▀▀ ▀▀▀     ▀▀▀  ▀█▄▀▪.▀  ▀     ▀▀▀ ▀▀▀ · ▀▀▀ '
+			@echo -e '             ▄ .▄▄▄▄ .▐▄• ▄ ▄▄▄▄· ▄▄▌  ▄• ▄▌ ▐ ▄ ▄▄▄▄▄          '
+			@echo -e '            ██▪▐█▀▄.▀· █▌█▌▪▐█ ▀█▪██•  █▪██▌•█▌▐█•██            '
+			@echo -e '            ██▀▐█▐▀▀▪▄ ·██· ▐█▀▀█▄██▪  █▌▐█▌▐█▐▐▌ ▐█.▪          '
+			@echo -e '            ██▌▐▀▐█▄▄▌▪▐█·█▌██▄▪▐█▐█▌▐▌▐█▄█▌██▐█▌ ▐█▌·          '
+			@echo -e '            ▀▀▀ · ▀▀▀ •▀▀ ▀▀·▀▀▀▀ .▀▀▀  ▀▀▀ ▀▀ █▪ ▀▀▀           '
+			@echo -e ' '
+			
+
+.PHONY:			all clean fclean re norm test bonus asciiart

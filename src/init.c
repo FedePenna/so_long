@@ -23,6 +23,12 @@ void	init_textures(t_data *game)
 	game->textures.player_down = NULL;
 	game->textures.exit = NULL;
 	game->textures.enemy = NULL;
+	game->textures.fidle_a = NULL;
+	game->textures.fidle_b = NULL;
+	game->textures.ridle = NULL;
+	game->textures.lidle = NULL;
+	game->textures.bidle_a = NULL;
+	game->textures.bidle_b = NULL;
 }
 
 void	init_game(t_data *game)
@@ -42,7 +48,7 @@ void	init_game(t_data *game)
 	game->enemy_pos.row = 0;
 	game->enemy_pos.col = 0;
 	game->enemy_pos.e_dir = BACK;
-	game->player_pos.directions = FRONT;
+	game->player_pos.dir = FRONT;
 	game->player = 0;
 	game->enemy = 0;
 	game->coins = 0;

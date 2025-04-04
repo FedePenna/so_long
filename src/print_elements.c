@@ -28,18 +28,19 @@ void	print_coin(t_data *game, int i, int index)
 void	print_player(t_data *game, int i, int index)
 {
 	print_ground(game, i, index);
-	if (game->player_pos.directions == FRONT)
+	if (game->player_pos.dir == FRONT)
 		mlx_put_image_to_window(game->mlx, game->win, \
 			game->textures.player, i * 64, (index * 64));
-	else if (game->player_pos.directions == BACK)
+	else if (game->player_pos.dir == BACK)
 		mlx_put_image_to_window(game->mlx, game->win, \
 			game->textures.player_down, i * 64, (index * 64));
-	else if (game->player_pos.directions == LEFT)
+	else if (game->player_pos.dir == LEFT)
 		mlx_put_image_to_window(game->mlx, game->win, \
 			game->textures.player_left, i * 64, (index * 64));
-	else if (game->player_pos.directions == RIGHT)
+	else if (game->player_pos.dir == RIGHT)
 		mlx_put_image_to_window(game->mlx, game->win, \
 			game->textures.player_right, i * 64, (index * 64));
+	animate(game, i, index);
 }
 
 void	print_exit(t_data *game, int i, int index)

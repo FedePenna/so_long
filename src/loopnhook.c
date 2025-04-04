@@ -24,7 +24,11 @@ int	move_hook(int keycode, t_data *game)
 int	my_loop(t_data *game)
 {
 	game->frames++;
-	usleep(40000);
+	if (game->frames == 800)
+	{
+		move_enemy(game, game->enemy_pos.row, game->enemy_pos.col);
+		game->frames = 0;
+	}
 	item_to_window(game);
 	return (0);
 }

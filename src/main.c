@@ -11,10 +11,20 @@
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	ft_error_message(char *message)
+/*ADVICE
+  Following the course of this project from this code is hard since you have to
+  understand where the functions are and stuff, for this i suggest to go to the
+  URL and replace the .com, with .dev, it will open this same code
+  with a VScode extension so you can see how the code's tied with itself!*/
+void	ft_error_message(char *message, t_data *game)
 {
 	ft_printf("ERROR: %s\n", message);
+	if (game->map)
+		free_maps(game);
+	if (game->maptwo)
+		free_maps2(game);
+	if (game->mapthree)
+		free_maps3(game);
 	exit(1);
 }
 
@@ -22,11 +32,11 @@ void	open_window(t_data *game)
 {
 	game->mlx = mlx_init();
 	if (!game->mlx)
-		ft_error_message("inizialization failed try again");
+		ft_error_message("inizialization failed try again", game);
 	game->win = mlx_new_window(game->mlx,
 			game->cols * 64,
 			game->rows * 64,
-			"Quest For The Hexblunt");
+			"so_long");
 	convert_image(game);
 	item_to_window(game);
 }
@@ -35,11 +45,11 @@ int	main(int ac, char **av)
 {
 	t_data	game;
 
-	if (ac != 2)
-		ft_error_message("Only 2 arguments are needed");
-	if (!ft_strnstr(av[1], ".ber", ft_strlen(av[1])))
-		ft_error_message("The map file must be a .ber file !!");
 	init_game(&game);
+	if (ac != 2)
+		ft_error_message("Only 2 arguments are needed", &game);
+	if (!ft_strnstr(av[1] + ft_strlen(av[1]) - 4, ".ber", 4))
+		ft_error_message("The map file must be a .ber file !!", &game);
 	create_map(&game, av[1]);
 	check_map(&game);
 	flood_prep(&game);

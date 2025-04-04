@@ -71,13 +71,13 @@ void	flood_prep(t_data *game)
 
 	game->mapdup = (char **)malloc(sizeof(char *) * (game->rows + 1));
 	if (game->mapdup == NULL)
-		ft_error_message("A Memory Allocation has failed");
+		ft_error_message("A Memory Allocation has failed", game);
 	i = 0;
 	while (i < game->rows)
 	{
 		game->mapdup[i] = ft_strdup(game->map[i]);
 		if (game->mapdup[i] == NULL)
-			ft_error_message("A Memory Allocation has failed");
+			ft_error_message("A Memory Allocation has failed", game);
 		i++;
 	}
 	game->mapdup[i] = NULL;
@@ -90,5 +90,5 @@ void	flood_prep(t_data *game)
 	if (flood_check(game, game->mapdup) == 1 && \
 		flood_check(game, game->maptwo) == 1 && \
 		flood_check(game, game->mapthree) == 1)
-		ft_error_message("The enemy is blocking the exit!!");
+		ft_error_message("The following map cannot be finished!!", game);
 }

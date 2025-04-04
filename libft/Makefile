@@ -63,7 +63,7 @@ BONUS = ft_lstadd_back.c  \
 BONUS_OBJS = $(BONUS:.c=.o) # This will convert bonus .c files to bonus .o files
 
 CC = gcc # Compiler that is going to be used
-CFLAGS = -Wall -Werror -Wextra -gdwarf-4
+CFLAGS = -Wall -Werror -Wextra # Flags
 RM = rm -rf # Command used to remove files or directories
 AR = ar crs # Command used to create archives (static library)
 

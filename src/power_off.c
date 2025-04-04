@@ -20,15 +20,19 @@ void	free_maps(t_data *game)
 	while (i < game->rows)
 	{
 		free(game->map[i]);
-		free(game->mapdup[i]);
+		if (game->mapdup)
+			free(game->mapdup[i]);
 		game->map[i] = NULL;
-		game->mapdup[i] = NULL;
+		if (game->mapdup)
+			game->mapdup[i] = NULL;
 		i++;
 	}
 	free(game->map);
-	free(game->mapdup);
+	if (game->mapdup)
+		free(game->mapdup);
 	game->map = NULL;
-	game->mapdup = NULL;
+	if (game->mapdup)
+		game->mapdup = NULL;
 }
 
 void	free_maps2(t_data *game)
@@ -46,7 +50,7 @@ void	free_maps2(t_data *game)
 		i++;
 	}
 	if (game->maptwo)
-	{	
+	{
 		free(game->maptwo);
 		game->maptwo = NULL;
 	}
@@ -67,7 +71,7 @@ void	free_maps3(t_data *game)
 		i++;
 	}
 	if (game->mapthree)
-	{	
+	{
 		free(game->mapthree);
 		game->mapthree = NULL;
 	}
@@ -84,6 +88,12 @@ void	free_textures(t_data *game)
 	mlx_destroy_image(game->mlx, game->textures.player_right);
 	mlx_destroy_image(game->mlx, game->textures.player_down);
 	mlx_destroy_image(game->mlx, game->textures.enemy);
+	mlx_destroy_image(game->mlx, game->textures.bidle_a);
+	mlx_destroy_image(game->mlx, game->textures.bidle_b);
+	mlx_destroy_image(game->mlx, game->textures.fidle_a);
+	mlx_destroy_image(game->mlx, game->textures.fidle_b);
+	mlx_destroy_image(game->mlx, game->textures.ridle);
+	mlx_destroy_image(game->mlx, game->textures.lidle);
 }
 
 int	power_off(t_data *game)

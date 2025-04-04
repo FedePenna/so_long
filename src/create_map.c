@@ -11,7 +11,9 @@
 /* ************************************************************************** */
 
 #include "so_long.h"
-
+/*SIDE NOTE
+  Use your Own GNL mine leaks for A SINGLE BYTE in some cases despite having
+  a full 125 on the Intra*/
 void	gnl_row(t_data *game, char *mappath)
 {
 	int		fd;
@@ -19,7 +21,7 @@ void	gnl_row(t_data *game, char *mappath)
 
 	fd = open(mappath, O_RDONLY);
 	if (fd < 0)
-		ft_error_message("The map wasn't found");
+		ft_error_message("The map wasn't found", game);
 	while (1)
 	{
 		line = get_next_line(fd);
@@ -40,17 +42,16 @@ void	create_map(t_data *game, char *mappath)
 	i = 0;
 	gnl_row(game, mappath);
 	if (game->rows == 0)
-		ft_error_message("the following \"map\" has no rows");
+		ft_error_message("the following \"map\" has no rows", game);
 	fd = open (mappath, O_RDONLY);
 	if (fd < 0)
-		ft_error_message("The map wasn't found");
+		ft_error_message("The map wasn't found", game);
 	game->map = (char **)malloc(sizeof(char *) * (game->rows + 1));
 	if (!game->map)
-		ft_error_message("The memory allocation for the map's creation failed");
+		ft_error_message("The malloc for the map's creation failed", game);
 	while (i < game->rows)
 	{
 		game->map[i] = get_next_line(fd);
-		
 		if (!(game->map[i]))
 			break ;
 		i++;

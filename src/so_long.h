@@ -19,6 +19,10 @@
 # include <fcntl.h>
 # include <unistd.h>
 
+# ifndef TIMER
+#  define TIMER 0
+# endif
+
 enum e_thewasd
 {
 	W = 119,
@@ -47,13 +51,19 @@ typedef struct s_txtrs
 	void	*player_down;
 	void	*exit;
 	void	*enemy;
+	void	*fidle_a;
+	void	*fidle_b;
+	void	*ridle;
+	void	*lidle;
+	void	*bidle_a;
+	void	*bidle_b;
 }	t_textures;
 
 typedef struct s_player
 {
 	int						row;
 	int						col;
-	enum e_directions		directions;
+	enum e_directions		dir;
 }	t_player;
 
 typedef struct s_enemy
@@ -87,7 +97,7 @@ typedef struct s_gamedata
 	t_textures	textures;
 }	t_data;
 
-void		ft_error_message(char *message);
+void		ft_error_message(char *message, t_data *game);
 void		init_game(t_data *game);
 void		create_map(t_data *game, char *mappath);
 void		check_map(t_data *game);
@@ -107,6 +117,22 @@ void		print_enemy(t_data *game, int i, int index);
 void		print_wall(t_data *game, int i, int index);
 void		dup_map(t_data *game, int erows, int ecols);
 void		find_enemy(t_data *game);
+void		move_enemy_x(t_data *game, int row, int col);
+void		move_enemy_y(t_data *game, int row, int col);
+void		move_enemy(t_data *game, int row, int col);
+void		move_right_x(t_data *game, int rows, int cols);
+void		move_mid_x(t_data *game, int rows, int cols);
+void		move_right_y(t_data *game, int rows, int cols);
+void		move_mid_y(t_data *game, int rows, int cols);
+void		free_maps2(t_data *game);
+void		free_maps3(t_data *game);
+void		kill_player(t_data *game);
+void		convert_animations(t_data *game);
+void		animate(t_data *game, int i, int index);
+void		animate_f(t_data *game, int i, int index);
+void		animate_b(t_data *game, int i, int index);
+void		animate_r(t_data *game, int i, int index);
+void		animate_l(t_data *game, int i, int index);
 int			check_enemy_moves(t_data *game, int rows, int cols);
 int			my_loop(t_data *game);
 int			move_hook(int keycode, t_data *game);

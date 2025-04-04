@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fepennar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 18:20:13 by fepennar          #+#    #+#             */
-/*   Updated: 2025/01/22 18:46:52 by fepennar         ###   ########.fr       */
+/*   Updated: 2025/01/22 18:40:01 by fepennar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BUFFER_SIZE
-# define BUFFER_SIZE 11
+# define BUFFER_SIZE 9
 #endif
 
 #include "libft.h"
@@ -105,40 +105,24 @@ char	*get_next_line(int fd)
 {
 	char		*bstr;
 	ssize_t		bytes;
-	static char	*save;
+	static char	*save[1024];
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd > 1024)
 		return (NULL);
 	bstr = (char *)malloc((BUFFER_SIZE + 1) * (sizeof(char)));
 	if (!bstr)
 		return (NULL);
 	while (1)
 	{
-		if (save && ft_strchr(save, '\n'))
-			return (ft_snl(&save, bstr));
+		if (save[fd] && ft_strchr(save[fd], '\n'))
+			return (ft_snl(&save[fd], bstr));
 		bytes = read(fd, bstr, BUFFER_SIZE);
 		if (bytes <= 0)
-			return (ft_no_bytces(&save, bstr, bytes));
+			return (ft_no_bytces(&save[fd], bstr, bytes));
 		bstr[bytes] = '\0';
 		if (ft_strchr(bstr, '\n'))
-			return (ft_bnl(&save, bstr));
-		ft_bejoin(&save, bstr);
+			return (ft_bnl(&save[fd], bstr));
+		ft_bejoin(&save[fd], bstr);
 	}
 	return (NULL);
 }
-/*
-int     main()
-{
-        int     fd = open("test", O_RDONLY);
-        //printf("%s", get_next_line(fd));
-
-        char *str = get_next_line(fd);
-        while (str != NULL)
-        {
-                printf("%s", str);
-                free(str);
-                str = get_next_line(fd);
-        }
-        return (0);
-}
-*/
