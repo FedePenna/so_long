@@ -78,24 +78,9 @@ re:				fclean all
 timer:			fclean
 				@$(MAKE) TIMER_FLAG="-DTIMER=1"
 
-all:			$(NAME) asciiart
+all:			$(NAME)
 
 norm:
 				@norminette $(SRCS) $(SRCS_DIR)so_long.h
 
-asciiart: 
-			@echo -e ' '
-			@echo -e ' .▄▄▄  ▄• ▄▌▄▄▄ ..▄▄ ·▄▄▄▄▄    ·▄▄▄      ▄▄▄   ▄▄▄▄▄▄▄ ▄ .▄▄▄▄ .'
-			@echo -e '▐▀•▀█ █▪██▌▀▄.▀·▐█ ▀.•██      ▐▄▄·▪     ▀▄ █·    •██  ██▪▐█▀▄.▀·'
-			@echo -e '█▌·.█▌█▌▐█▌▐▀▀▪▄▄▀▀▀█▄▐█.▪    ██▪  ▄█▀▄ ▐▀▀▄      ▐█.▪██▀▐█▐▀▀▪▄'
-			@echo -e '▐█▪▄█·▐█▄█▌▐█▄▄▌▐█▄▪▐█▐█▌·    ██▌.▐█▌.▐▌▐█•█▌     ▐█▌·██▌▐▀▐█▄▄▌'
-			@echo -e '·▀▀█.  ▀▀▀  ▀▀▀  ▀▀▀▀ ▀▀▀     ▀▀▀  ▀█▄▀▪.▀  ▀     ▀▀▀ ▀▀▀ · ▀▀▀ '
-			@echo -e '             ▄ .▄▄▄▄ .▐▄• ▄ ▄▄▄▄· ▄▄▌  ▄• ▄▌ ▐ ▄ ▄▄▄▄▄          '
-			@echo -e '            ██▪▐█▀▄.▀· █▌█▌▪▐█ ▀█▪██•  █▪██▌•█▌▐█•██            '
-			@echo -e '            ██▀▐█▐▀▀▪▄ ·██· ▐█▀▀█▄██▪  █▌▐█▌▐█▐▐▌ ▐█.▪          '
-			@echo -e '            ██▌▐▀▐█▄▄▌▪▐█·█▌██▄▪▐█▐█▌▐▌▐█▄█▌██▐█▌ ▐█▌·          '
-			@echo -e '            ▀▀▀ · ▀▀▀ •▀▀ ▀▀·▀▀▀▀ .▀▀▀  ▀▀▀ ▀▀ █▪ ▀▀▀           '
-			@echo -e ' '
-			
-
-.PHONY:			all clean fclean re norm test bonus asciiart
+.PHONY:			all clean fclean re norm test bonus
