@@ -36,8 +36,7 @@ static void	move_events(t_data *game)
 	if (game->map[game->player_pos.row][game->player_pos.col] == 'E' \
 		&& game->coins == 0)
 	{
-		ft_printf("\nKABLOW!!\nHow was the anaphylactic shock like?\n");
-		ft_printf("Welcome to Weedheaven\n");
+		ft_printf("\nMessage Of Your Choice\n");
 		power_off(game);
 	}
 }
