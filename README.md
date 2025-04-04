@@ -7,9 +7,9 @@ Have Fun losing your shit on this one, The End Result WILL BE Worth it...
 
 My Score was a Full 125/125 having done all bonuses such as
 
-Sprite Animation
-Moves and Score displayed on Game
-Enemy Patrol
++ Sprite Animation
++ Moves and Score displayed on Game
++ Enemy Patrol
 + (not really a bonus but i had fun doing it) a Timer!
 
 HOW YOU CAN USE THIS GIT
